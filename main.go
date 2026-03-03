@@ -1,11 +1,11 @@
 package main
 
-import (
-	"fmt"
-	arrayii "leetcode/array_ii"
-)
+func exclusiveTime(n int, logs []string) []int {
+	ans := make([]int, len(logs))
+	
+	return ans
+}
 
 func main() {
-	fmt.Println(arrayii.FindDisappearedNumbers([]int{4, 3, 2, 7, 8, 2, 3, 1}))
-	fmt.Println(arrayii.FindDisappearedNumbers([]int{1, 1}))
+
 }
