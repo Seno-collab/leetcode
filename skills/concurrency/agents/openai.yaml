@@ -1,0 +1,4 @@
+interface:
+  display_name: "Concurrency"
+  short_description: "Solve and explain concurrency tasks"
+  default_prompt: "Use $concurrency to solve, review, or explain a Go concurrency problem."

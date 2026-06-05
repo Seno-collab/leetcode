@@ -1,11 +1,16 @@
 package main
 
-func exclusiveTime(n int, logs []string) []int {
-	ans := make([]int, len(logs))
-	
-	return ans
+import (
+	"fmt"
+	"time"
+)
+
+func sayHello() {
+	fmt.Println("Hello from goroutine")
 }
 
 func main() {
-
+	go sayHello()
+	time.Sleep(200 * time.Second)
+	fmt.Println("Hello from main")
 }
