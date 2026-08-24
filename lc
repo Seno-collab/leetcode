@@ -1,0 +1,72 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+show_help() {
+	cat <<'EOF'
+LeetCode exercise helper
+
+Usage:
+  ./lc new <name>                         Create an exercise
+  ./lc <name>                             Build if needed, then run
+  ./lc run <name> [numbers...]            Run with numbers
+  ./lc run <name> --input <file>          Run cases from a file
+  ./lc build <name>                       Build only
+  ./lc list                               List exercises
+  ./lc test                               Run all tests
+  ./lc help                               Show this help
+
+Examples:
+  ./lc new two_sum
+  ./lc two_sum
+  ./lc two_sum 2 7 11 15
+  ./lc two_sum --input cases.txt --output results.jsonl
+EOF
+}
+
+command="${1:-help}"
+case "$command" in
+	help | -h | --help)
+		show_help
+		;;
+	new | n)
+		shift
+		bash "$script_dir/scripts/new-exercise.sh" "${1:-}"
+		;;
+	run | r)
+		shift
+		name="${1:-}"
+		if [[ -n "$name" ]]; then
+			shift
+		fi
+		bash "$script_dir/scripts/run-exercise.sh" "$name" "$@"
+		;;
+	build | b)
+		shift
+		bash "$script_dir/scripts/build-exercise.sh" "${1:-}"
+		;;
+	test | t)
+		(
+			cd "$script_dir"
+			go test ./...
+		)
+		;;
+	list | ls)
+		shopt -s nullglob
+		exercises=("$script_dir"/exercises/*/main.go)
+		if (( ${#exercises[@]} == 0 )); then
+			echo 'No exercises yet. Create one with: ./lc new two_sum'
+			exit 0
+		fi
+		for main_file in "${exercises[@]}"; do
+			basename "$(dirname "$main_file")"
+		done
+		;;
+	*)
+		name="$command"
+		shift
+		bash "$script_dir/scripts/run-exercise.sh" "$name" "$@"
+		;;
+esac

@@ -20,8 +20,7 @@ func main() {
 	}
 }
 
-// solve is the function to replace when practising another problem.
-// It currently returns the sum of all input numbers.
+// Replace this function with the solution for the current exercise.
 func solve(numbers []int) int {
 	total := 0
 	for _, number := range numbers {
