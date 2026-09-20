@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	err := runner.Run(
+	err := runner.RunInts(
 		os.Args[1:],
 		runner.DefaultOptions(),
 		solve,

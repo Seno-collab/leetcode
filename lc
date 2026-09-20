@@ -10,7 +10,7 @@ LeetCode exercise helper
 
 Usage:
   ./lc new <name>                         Create an exercise
-  ./lc <name>                             Build if needed, then run
+  ./lc <name>                             Build, run, and show solve time
   ./lc run <name> [numbers...]            Run with numbers
   ./lc run <name> --input <file>          Run cases from a file
   ./lc build <name>                       Build only
@@ -22,7 +22,12 @@ Examples:
   ./lc new two_sum
   ./lc two_sum
   ./lc two_sum 2 7 11 15
+  ./lc top_k_frequent_elements '{"numbers":[1,1,2,3,3,3],"k":2}'
   ./lc two_sum --input cases.txt --output results.jsonl
+
+Input formats:
+  RunInts: whitespace-separated integers
+  RunJSON: one JSON value per line for structs, strings, slices, or matrices
 EOF
 }
 
