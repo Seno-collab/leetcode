@@ -9,10 +9,10 @@ if [[ -z "$name" ]]; then
 fi
 shift
 
-if [[ ! "$name" =~ ^[a-zA-Z0-9_]+$ ]]; then
-	echo 'NAME must contain only letters, numbers, and underscores.' >&2
-	exit 1
-fi
+# if [[ ! "$name" =~ ^[a-zA-Z0-9_]+$ ]]; then
+# 	echo 'NAME must contain only letters, numbers, and underscores.' >&2
+# 	exit 1
+# fi
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 repo_dir="$(cd "$script_dir/.." && pwd)"
